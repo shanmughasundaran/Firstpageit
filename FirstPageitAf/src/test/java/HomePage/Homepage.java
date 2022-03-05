@@ -656,7 +656,7 @@ public void FIPGTS_00003_FIPGTS_00002() throws InterruptedException {
 	@Test(priority=27,enabled=true)
 	public void FIPGTS_00003_FIPGTS_00006() throws InterruptedException {
 		
-		driver.get("http://18.218.59.128/firstpage/public/Know_More#pitch");
+//		driver.get("http://18.218.59.128/firstpage/public/Know_More#pitch");
 		Actions act=new Actions(driver);
 		Thread.sleep(2000);
 		WebElement FIPGTS_00003_FIPGTS_00006_knowmore_WhatsFP = driver.findElement(By.xpath("//a[contains(text(),'Know More')]"));
@@ -739,10 +739,42 @@ public void FIPGTS_00003_FIPGTS_00002() throws InterruptedException {
 			
 	}
 	}
+	@Test(priority=30,enabled=true)
+	public void FIPGTS_00003_FIPGTS_00009() throws InterruptedException {
+		
+		String FIPGTS_00003_FIPGTS_00009_FirstPageHome=driver.getWindowHandle();
+		Actions act=new Actions(driver);
+		WebElement FIPGTS_00003_FIPGTS_00009_knowmore = driver.findElement(By.xpath("//a[contains(text(),'Know More')]"));
+		act.moveToElement(FIPGTS_00003_FIPGTS_00009_knowmore).perform();
+		Thread.sleep(2000);
+		String FIPGTS_00003_FIPGTS_00009_homeurl= driver.getCurrentUrl();
+		
+		WebElement FIPGTS_00003_FIPGTS_00009_BecomeRstar= driver.findElement(By.xpath("//a[contains(text(),'Become an RStar')]"));
+		FIPGTS_00003_FIPGTS_00009_BecomeRstar.click();
+//		Set<String>Allwindows=driver.getWindowHandles();
+//		for (String FIPGTS_00003_FIPGTS_00009_BecomeRstar1 : Allwindows) {
+//			driver.switchTo().window(FIPGTS_00003_FIPGTS_00009_BecomeRstar1);
+//			
+//		}
+		String currentwindow=driver.getCurrentUrl();
+			if(driver.getCurrentUrl().equals("http://18.218.59.128/firstpage/public/Know_More#become_a_rstar")){
+				System.out.println("FIPGTS_00003_FIPGTS_00009= Pass");
+				Thread.sleep(2000);
+//				driver.close();
+//				driver.switchTo().window(FIPGTS_00003_FIPGTS_00009_FirstPageHome);
+			}
+			else {
+				
+				System.out.println("FIPGTS_00003_FIPGTS_00009= Fails");
+
+				Actions action = new Actions(driver);
+				action.moveByOffset(200,100).perform();
+				Thread.sleep(2000);
+				action.click();
+			}
+	}
 				
 	
-
-
 
 	@AfterSuite
 	public void Close_Browser() {
